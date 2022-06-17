@@ -6,7 +6,7 @@ const User = require('../Models/user')
 //the (next) argument is to let the next middleware executes,
 // after this one has done if u don't put next it will stuck resulting an auth failure !
 
-const protect = asyncHandler(async (req, res, next) => {
+const protect = asyncHandler(async (req, res, ) => {
     let token
 
     if (
@@ -44,7 +44,7 @@ const admin = (req, res, next) => {
     }
 }
 
-export {
+module.exports = {
     protect,
     admin
 }

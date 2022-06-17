@@ -3,7 +3,7 @@
 
 const asyncHandler = require('express-async-handler');
 const User = require('../Models/user');
-
+const TokenGenerator = require("../jwt-token/token-gen")
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
@@ -22,7 +22,10 @@ const authUser = asyncHandler(async (req, res) => {
         //res data
         res.json({
             _id: user._id,
-            name: user.name,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            phone: user.phone,
+            zip: user.zip,
             email: user.email,
             isAdmin: user.isAdmin,
             token: TokenGenerator(user._id),
@@ -203,7 +206,6 @@ const updateUser = asyncHandler(async (req, res) => {
         throw new Error('User not found')
     }
 })
-
 module.exports = {
     authUser,
     registerUser,

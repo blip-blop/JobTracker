@@ -4,8 +4,7 @@ const PORT = process.env.PORT;
 const app = express();
 connectDB();
 app.use(express.json());
-app.use("/api/users", require("./Routes/users"));
-
+app.use('/api/users', require('./Routes/users'));
 app.listen(PORT, (err) => {
     err
         ?
