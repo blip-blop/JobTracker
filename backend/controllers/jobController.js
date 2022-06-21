@@ -1,39 +1,40 @@
-const asyncHandler = require(" asyncHandler");
-const userSchema = require("../Models/post");
+const asyncHandler = require("express-async-handler");
+const Post = require("../Models/post");
 
-
-const PostjobItems = asyncHandler(async (req, res) => {
+// @desc    Post a job
+// @route   POST /api/jobs/addjob
+// @access  Private/Admin
+const addPostItems = asyncHandler(async (req, res) => {
     const {
         jobTitle,
-        jobLocation,
-        jobDescription,
         jobDate,
+        jobLocation,
+        jobDescription
     } = req.body
 
-    if (jobItems && orderItems.length === 0) {
+    if (req.body && req.body.length === 0) {
         res.status(400)
-        throw new Error("you can't add empty job details...")
+        throw new Error('No post !!')
         return
     } else {
-        const job = new Job({
-            jobItems,
-            user: req.user._id,
+        const post = new Post({
             jobTitle,
-            jobLocation,
-            jobDescription,
             jobDate,
+            jobLocation,
+            jobDescription
         })
+
+        const createdPost = await post.save()
 
         res.status(201).json(createdPost)
     }
 })
-const createdPost = await post.save()
 
-export {
-    jobItems,
-    user_id,
-    jobTitle,
-    jobLocation,
-    jobDescription,
-    jobDate,
+module.exports = {
+    addPostItems
 }
+
+
+// @desc    modify a job offer
+// @route   POST /api/jobs
+// @access  private (employer)

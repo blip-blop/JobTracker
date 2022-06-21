@@ -27,6 +27,8 @@ const authUser = asyncHandler(async (req, res) => {
             phone: user.phone,
             zip: user.zip,
             email: user.email,
+            role: user.role,
+            selectedCity: user.selectedCity,
             isAdmin: user.isAdmin,
             token: TokenGenerator(user._id),
         })
@@ -47,7 +49,9 @@ const registerUser = asyncHandler(async (req, res) => {
         password,
         lastName,
         phone,
-        zip
+        zip,
+        role,
+        selectedCity
     } = req.body
 
     const userExists = await User.findOne({
@@ -65,7 +69,9 @@ const registerUser = asyncHandler(async (req, res) => {
         password,
         lastName,
         phone,
-        zip
+        zip,
+        role,
+        selectedCity
     })
 
     if (user) {
@@ -76,6 +82,8 @@ const registerUser = asyncHandler(async (req, res) => {
             email: user.email,
             phone: user.phone,
             zip: user.zip,
+            role: user.role,
+            selectedCity: user.selectedCity,
             isAdmin: user.isAdmin,
             token: TokenGenerator(user._id),
         })
@@ -100,6 +108,8 @@ const getUserProfile = asyncHandler(async (req, res) => {
             email: user.email,
             phone: user.phone,
             zip: user.zip,
+            role: user.role,
+            selectedCity: user.selectedCity,
             isAdmin: user.isAdmin,
         })
     } else {
@@ -120,6 +130,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.phone = req.body.phone || user.phone
         user.zip = req.body.zip || user.zip
         user.email = req.body.email || user.email
+        user.role = req.body.role || user.role
+        user.selectedCity = req.body.selectedCity || user.selectedCity
 
         if (req.body.password) {
             user.password = req.body.password
@@ -134,6 +146,8 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             email: updateUser.email,
             zip: updateUser.zip,
             phone: updateUser.phone,
+            role: updateUser.role,
+            selectedCity: updateUser.selectedCity,
             isAdmin: updatedUser.isAdmin,
             token: TokenGenerator(updatedUser._id),
         })
@@ -196,6 +210,8 @@ const updateUser = asyncHandler(async (req, res) => {
         user.phone = req.body.phone || user.phone
         user.zip = req.body.zip || user.zip
         user.email = req.body.email || user.email
+        user.role = req.body.role || user.role
+        user.selectedCity = req.body.selectedCity || user.selectedCity
         const updatedUser = await user.save()
 
         res.json({

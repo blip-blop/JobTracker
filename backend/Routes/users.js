@@ -16,7 +16,7 @@ const {
     admin
 } = require("../middleware/authM")
 
-router.route('/').post(registerUser).get(protect, admin, getUsers)
+router.route('/register').post(registerUser).get(protect, admin, getUsers)
 router.post('/login', authUser)
 router
     .route('/profile')

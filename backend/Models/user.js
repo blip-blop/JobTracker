@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const fs = require("fs");
 
 const userSchema = mongoose.Schema({
     firstName: {
@@ -13,12 +14,15 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
+        unique: true,
     },
 
     phone: {
         type: Number,
         required: true,
+        unique: true,
     },
+
 
     password: {
         type: String,
@@ -26,15 +30,21 @@ const userSchema = mongoose.Schema({
     },
     selectedCity: {
         type: String,
-        required: false,
+        required: true,
     },
+
     zip: {
         type: Number,
         required: true,
     },
     role: {
         type: String,
-        required: false,
+        required: true,
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false,
+        required: true,
     },
 });
 
