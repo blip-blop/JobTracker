@@ -41,11 +41,7 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    isAdmin: {
-        type: Boolean,
-        default: false,
-        required: true,
-    },
+
 });
 
 userSchema.methods.matchPassword = async function(enteredPassword) {

@@ -10,6 +10,10 @@ const {
     admin
 } = require("../middleware/authM");
 
-router.route('/addjob').post(addPostItems).get(protect, admin, addPostItems);
+router.route('/addjob').post(addPostItems).get(addPostItems);
+router
+    .route('/joblist')
+    .get(protect, )
+    .put(protect, )
 
 module.exports = router
