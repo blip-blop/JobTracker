@@ -1,4 +1,6 @@
+import React from "react";
 import { Form, FormControl, Button } from "react-bootstrap";
+
 const SearchBar = () => {
   return (
     <div>

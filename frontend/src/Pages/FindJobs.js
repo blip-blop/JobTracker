@@ -1,3 +1,4 @@
+import React from "react";
 import JobPreview from "../Components/JobPreview";
 import SearchBar from "../Components/SearchBar";
 const FindJobs = () => {

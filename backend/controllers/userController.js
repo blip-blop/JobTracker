@@ -28,6 +28,7 @@ const authUser = asyncHandler(async (req, res) => {
             zip: user.zip,
             email: user.email,
             role: user.role,
+            isAdmin: user.isAdmin,
             selectedCity: user.selectedCity,
             token: TokenGenerator(user._id),
         })
@@ -130,6 +131,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         user.zip = req.body.zip || user.zip
         user.email = req.body.email || user.email
         user.role = req.body.role || user.role
+        user.isAdmin = req.body.isAdmin || user.isAdmin
         user.selectedCity = req.body.selectedCity || user.selectedCity
 
         if (req.body.password) {

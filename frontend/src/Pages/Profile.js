@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import image from "../images/JobTracker-logos.jpeg";
 import { useSelector } from "react-redux";

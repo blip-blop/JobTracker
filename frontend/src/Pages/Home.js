@@ -1,3 +1,4 @@
+import React from "react";
 import SearchBar from "../Components/SearchBar";
 import JobPreview from "../Components/JobPreview";
 import EmployerOption from "../Components/EmployerOption";

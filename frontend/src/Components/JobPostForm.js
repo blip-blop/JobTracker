@@ -1,7 +1,9 @@
+import React from "react";
 import { Button, Form, Col, Row } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { post } from "../State/reducers/postReducers";
+import { postJob } from "../features/posts/postsSlice";
 
 const JobPostForm = () => {
   const dispatch = useDispatch();
@@ -107,15 +109,13 @@ const JobPostForm = () => {
                   today.getDate();
                 var time = today.getHours() + ":" + today.getMinutes();
                 var dateTime = date + " " + time;
-
-                dispatch(
-                  post({
-                    jobTitle: data.jobTitle,
-                    jobLocation: data.jobLocation,
-                    jobDescription: data.jobDescription,
-                    jobDate: dateTime,
-                  })
-                );
+                const dataa = {
+                  jobTitle: data.jobTitle,
+                  jobLocation: data.jobLocation,
+                  jobDescription: data.jobDescription,
+                  jobDate: dateTime,
+                };
+                dispatch(postJob(dataa));
               }}>
               Post Job Offer
             </Button>

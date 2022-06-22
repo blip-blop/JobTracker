@@ -1,25 +1,26 @@
+import React from "react";
 import { Card, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 const JobPreview = () => {
-  const post = useSelector((state) => state.post.value);
+  const { jobTitle, jobDescription, jobLocation, jobDate } = useSelector(
+    (state) => state.post
+  );
 
   return (
     <div className="job-preview">
       <Card>
         <Card.Body>
-          <Card.Title className="job-title ">{post.jobTitle}</Card.Title>
+          <Card.Title className="job-title ">{jobTitle}</Card.Title>
           <Card.Subtitle className="job-location h4">
-            {post.jobLocation}
+            {jobLocation}
           </Card.Subtitle>
-          <Card.Text className=" job-details ">{post.jobDescription}</Card.Text>
+          <Card.Text className=" job-details ">{jobDescription}</Card.Text>
           <Button className="apply-button" variant="primary">
             View Details
           </Button>
         </Card.Body>
-        <Card.Footer className="text-muted">
-          Posted in: {post.jobDate}
-        </Card.Footer>
+        <Card.Footer className="text-muted">Posted in: {jobDate}</Card.Footer>
       </Card>
     </div>
   );

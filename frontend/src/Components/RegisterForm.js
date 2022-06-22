@@ -1,25 +1,37 @@
+import React from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { reset } from "../State/reducers/authSlice";
-import { register } from "../State/reducers/userSlice";
+import {
+  signupUser,
+  userSelector,
+  clearState,
+} from "../features/users/userSlice";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
-
-  const navigate = useNavigate();
-
+  const { isFetching, isSuccess, isError, errorMessage } = useSelector(
+    userSelector
+  );
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     phone: "",
+    city: "",
     zip: "",
     selectedCity: "",
     role: "",
   });
+  const onSubmit = (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      console.error("Passwords do not match");
+    } else {
+      dispatch(signupUser(data));
+    }
+  };
 
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -34,10 +46,6 @@ const RegisterForm = () => {
     role,
   } = data;
 
-  const { user, isError, isSuccess, message } = useSelector(
-    (state) => state.user
-  );
-
   const handleChange = (e) => {
     const value = e.target.value;
     setData({
@@ -45,44 +53,19 @@ const RegisterForm = () => {
       [e.target.name]: value,
     });
   };
-
   useEffect(() => {
+    if (isSuccess) {
+      dispatch(clearState());
+    }
     if (isError) {
-      console.error(message);
+      dispatch(clearState());
     }
-
-    if (isSuccess || user) {
-      navigate("/profile");
-    }
-
-    dispatch(reset());
-  }, [user, isError, isSuccess, message, navigate, dispatch]);
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-
-    if (password !== confirmPassword) {
-      console.error("Passwords do not match");
-    } else {
-      dispatch(
-        register({
-          firstName,
-          lastName,
-          phone,
-          zip,
-          selectedCity,
-          email,
-          password,
-          role,
-        })
-      );
-    }
-  };
+  }, [isSuccess, isError]);
 
   return (
     <div className="register-form ">
       <h1>Sign Up</h1>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Row className="mb-3">
           <Form.Group as={Col} controlId="registerFormFirstName">
             <Form.Label>First Name</Form.Label>
@@ -199,29 +182,16 @@ const RegisterForm = () => {
             />
           </Form.Group>
         </Row>
-        <Form.Group as={Row} className="mb-2">
-          <Form.Label as="legend" column sm={10}>
-            Create account as
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Check
-              type="radio"
-              label="Employee"
-              name="role"
-              value={"Employee"}
-              id="formHorizontalRadios1"
-              onChange={handleChange}
-            />
-            <Form.Check
-              type="radio"
-              label="Employer"
-              name="role"
-              value={"Employer"}
-              id="formHorizontalRadios2"
-              onChange={handleChange}
-            />
-          </Col>
+
+        <Form.Group controlId="registerFormRole">
+          <Form.Label>Account Type</Form.Label>
+          <Form.Select name="role" value={role} onChange={handleChange}>
+            <option>...</option>
+            <option value="Employer">Employer</option>
+            <option value="Employee">Employee</option>
+          </Form.Select>
         </Form.Group>
+
         <Form.Group controlId="registerFormImage" className="mb-3">
           <Form.Label>Upload your profile picture</Form.Label>
           <Form.Control type="file" />
@@ -231,7 +201,11 @@ const RegisterForm = () => {
           <Form.Control type="file" />
         </Form.Group>
 
-        <Button onClick={onSubmit}>Create account</Button>
+        <div className="reg-button-container">
+          <Button className="reg-button" type="submit">
+            Create Account
+          </Button>
+        </div>
       </Form>
     </div>
   );

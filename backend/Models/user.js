@@ -1,8 +1,16 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
+const {
+    KeyObject
+} = require("crypto");
 
 const userSchema = mongoose.Schema({
+
+    img: {
+        data: Buffer,
+        contentType: String
+    },
     firstName: {
         type: String,
         required: true,
@@ -37,6 +45,11 @@ const userSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    isAdmin: {
+        type: Boolean,
+        default: true
+    },
+
     role: {
         type: String,
         required: true,

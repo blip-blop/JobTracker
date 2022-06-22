@@ -1,3 +1,4 @@
+import React from "react";
 import { Badge } from "react-bootstrap";
 
 const PopularSearches = () => {
@@ -6,31 +7,28 @@ const PopularSearches = () => {
       <h2 className="text-center">Popular Searches</h2>
       <div className="popular-searches">
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primaryaaaaaaaa aaaaaaaaaaaaaa aaaaaaaa aaaa
+          Technical Writer
         </Badge>{" "}
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
+          Scrum Master
         </Badge>{" "}
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
+          Mechanical Engineer
         </Badge>{" "}
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
+          Part-time Driver
         </Badge>{" "}
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
+          Weekend Dishwasher
         </Badge>{" "}
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
+          Janitorial Worker
         </Badge>{" "}
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
+          Guard Officer
         </Badge>{" "}
         <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
-        </Badge>{" "}
-        <Badge id="popular-searches-pill" pill bg="secondary">
-          Primary
+          Warehouse Worker
         </Badge>{" "}
       </div>
     </div>

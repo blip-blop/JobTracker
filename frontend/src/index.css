@@ -71,6 +71,16 @@ code {
   align-content: center;
 }
 
+.reg-button-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.reg-button {
+  justify-self: center;
+}
+
 .profile-pic {
   display: block;
   border-radius: 50%;
@@ -114,6 +124,7 @@ code {
 .popular-searches {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 #popular-searches-pill {

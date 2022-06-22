@@ -13,19 +13,19 @@ const {
 
 const {
     protect,
-    admin
+    admin,
 } = require("../middleware/authM")
 
 router.route('/register').post(registerUser).get(protect, admin, getUsers)
 router.post('/login', authUser)
 router
     .route('/profile')
-    .get(protect, getUserProfile)
-    .put(protect, updateUserProfile)
+    .get(admin, protect, getUserProfile)
+    .put(admin, protect, updateUserProfile)
 router
     .route('/:id')
-    .delete(protect, admin, deleteUser)
-    .get(protect, admin, getUserById)
-    .put(protect, admin, updateUser)
+    .delete(deleteUser)
+    .get(getUserById, protect, admin)
+    .put(updateUser, protect, admin)
 
 module.exports = router
