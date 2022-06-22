@@ -29,7 +29,6 @@ const authUser = asyncHandler(async (req, res) => {
             email: user.email,
             role: user.role,
             selectedCity: user.selectedCity,
-            isAdmin: user.isAdmin,
             token: TokenGenerator(user._id),
         })
     } else {
